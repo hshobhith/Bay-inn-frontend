@@ -11,23 +11,21 @@ import React from 'react';
 
 function Footers() {
   return (
-    <footer className='footer'>
+    <footer className="footer">
       <h2>Bay Inn Conforts | Hotel Room Booking System</h2>
       <p>©2026 Bay Inn Conforts</p>
       <p>
-        Powered by
+        Powered by{" "}
         <img
-          src='/images/svg/logo.svg'
-          alt='Nexode Solutions'
-          className='footer-logo'
+          src="/images/svg/logo.svg"
+          alt="Nexode Solutions"
+          className="footer-logo"
         />
-        
-        <a href='mailto:Contact@nexodesolutions.com'>
-          Contact@nexodesolutions.com
+        <a href="mailto:Contact@nexodesolutions.com">
+          {" "}Contact@nexodesolutions.com
         </a>
       </p>
     </footer>
   );
 }
-
 export default Footers;
