@@ -183,14 +183,40 @@ h6 {
 .defaultHero,
 .roomsHero {
   min-height: calc(100vh - 66px);
-  background: url('/images/jpeg/defaultBcg2.jpg') center/cover no-repeat;
+  background: url('/images/jpeg/defaultBcg2.jpeg') center center / cover no-repeat;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .roomsHero {
   background-image: url('/images/jpeg/room-2.jpeg');
-  min-height: 60vh;
+  min-height: 45vh;
+  background-position: center 60%;
+}
+
+/* mobile — disable fixed attachment (buggy on iOS) and reduce height */
+@media screen and (max-width: 576px) {
+  .defaultHero,
+  .roomsHero {
+    min-height: 60vh;
+    background-attachment: scroll;
+    background-position: center top;
+  }
+  .roomsHero {
+    min-height: 35vh;
+  }
+}
+
+/* tablet */
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .defaultHero {
+    min-height: 75vh;
+    background-attachment: scroll;
+  }
+  .roomsHero {
+    min-height: 40vh;
+  }
 }
 /* end of hero */
 
