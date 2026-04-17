@@ -25,7 +25,7 @@ function Home(props) {
     <MainLayout title='Bay  Inn  Conforts ― Home'>
       <Hero>
         <Banner
-          title='luxurious rooms'
+          title='Bay Inn luxurious rooms'
           subtitle='deluxe rooms starting at ₹299'
         >
           <Link href='/rooms' className='btn-primary'>
