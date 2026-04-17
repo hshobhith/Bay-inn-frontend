@@ -20,7 +20,7 @@ function Room({ room }) {
         />
 
         <div className='price-top'>
-          <h6>{`$ ${room?.room_price}`}</h6>
+          <h6>{`₹ ${room?.room_price}`}</h6>
           <p>per night</p>
         </div>
 
