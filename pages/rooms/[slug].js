@@ -85,7 +85,7 @@ function RoomPreview(props) {
                 <article className='info'>
                   <h3>Information:</h3>
                   <h6>
-                    {`Price : $ ${props?.room?.data?.room_price}`}
+                    {`Price : ₹ ${props?.room?.data?.room_price}`}
                   </h6>
                   <h6>
                     {`Size : ${props?.room?.data?.room_size} SQFT`}

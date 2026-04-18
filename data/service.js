@@ -15,22 +15,22 @@ const services = [
   {
     icon: <FaCocktail />,
     title: 'free cocktails',
-    info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores est eaque error provident unde eligendi.'
+    info: 'Enjoy a welcome drink on us! Our guests receive complimentary cocktails at check-in and during happy hours at the hotel lounge.'
   },
   {
     icon: <FaHiking />,
-    title: 'endless hiking',
-    info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores est eaque error provident unde eligendi.'
+    title: 'nature hiking',
+    info: 'Explore the scenic trails around the resort with our guided hiking tours, available daily for guests of all fitness levels.'
   },
   {
     icon: <FaShuttleVan />,
     title: 'free shuttle',
-    info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores est eaque error provident unde eligendi.'
+    info: 'We offer free airport and city centre shuttle service for all our guests. Just let us know your schedule and we will handle the rest.'
   },
   {
     icon: <FaBeer />,
-    title: 'storages beer',
-    info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores est eaque error provident unde eligendi.'
+    title: 'refreshing drinks',
+    info: 'Our in-house bar is stocked with a wide selection of beverages. Relax and enjoy chilled drinks at any time of the day.'
   }
 ];
 

@@ -10,6 +10,7 @@
 import Head from 'next/head';
 import React from 'react';
 import Footers from './footers';
+import FloatingContact from './FloatingContact';
 import Navbar from './navbar';
 
 function MainLayout({ children, title }) {
@@ -27,6 +28,7 @@ function MainLayout({ children, title }) {
         {children}
       </main>
       <Footers />
+      <FloatingContact />
     </>
   );
 }
