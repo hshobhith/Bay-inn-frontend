@@ -773,8 +773,15 @@ h6 {
 
 .profile-container {
   width: 100%;
-  height: calc(100vh - 205px);
-  padding-top: 20px;
+  min-height: calc(100vh - 205px);
+  padding: 20px 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile-container {
+    padding: 12px 8px;
+    min-height: unset;
+  }
 }
 
 /* end of profile style */

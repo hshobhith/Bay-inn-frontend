@@ -85,6 +85,7 @@ function BookingHistory() {
       ) : (
         <Table
           className='h-[74vh] overflow-y-scroll'
+          scroll={{ x: 700 }}
           columns={[
             {
               key: 1,

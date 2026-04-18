@@ -18,7 +18,17 @@ import PrivateRoute from '../../components/routes/PrivateRoute';
 
 function Profile() {
   const [activeTab, setActiveTab] = useState(1);
+  const [tabPosition, setTabPosition] = useState('left');
   const router = useRouter();
+
+  useEffect(() => {
+    const updateTabPosition = () => {
+      setTabPosition(window.innerWidth < 768 ? 'top' : 'left');
+    };
+    updateTabPosition();
+    window.addEventListener('resize', updateTabPosition);
+    return () => window.removeEventListener('resize', updateTabPosition);
+  }, []);
 
   useEffect(() => {
     if (router?.query?.tab === 'my-profile') {
@@ -45,7 +55,7 @@ function Profile() {
       <MainLayout title='Bay  Inn  Conforts ― My Profile'>
         <div className='profile-container'>
           <Tabs
-            tabPosition='left'
+            tabPosition={tabPosition}
             activeKey={activeTab}
             onTabClick={handleTabClick}
             size='large'

@@ -107,7 +107,7 @@ function RoomPreview(props) {
                       size='large'
                       onClick={handleOrder}
                     >
-                      Place Room Booking Order
+                      Book Now
                     </Button>
                   ) : (
                     <Button
