@@ -35,7 +35,7 @@ function Rooms(props) {
   return (
     <MainLayout title='Bay  Inn  Conforts ― Rooms'>
       <Hero hero='roomsHero'>
-        <Banner title='our rooms'>
+        <Banner title='Book Rooms'>
           <Link className='btn-primary' href='/'>
             return home
           </Link>

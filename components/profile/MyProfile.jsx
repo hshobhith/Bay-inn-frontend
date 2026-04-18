@@ -124,14 +124,13 @@ function MyProfile() {
             )}
           >
             <Descriptions.Item label='Avatar' span={3}>
-              {response?.data?.avatar ? (
-                <Image
-                  style={{ width: '100px', height: '100px' }}
-                  src={response?.data?.avatar}
-                  crossOrigin='anonymous'
-                  alt='user-image'
-                />
-              ) : 'N/A'}
+              <Image
+                style={{ width: '100px', height: '100px' }}
+                src={response?.data?.avatar || '/images/jpeg/defaultBcg.jpeg'}
+                fallback='/images/jpeg/defaultBcg.jpeg'
+                crossOrigin='anonymous'
+                alt='user-image'
+              />
 
               {/* user avatar change */}
               <div style={{ position: 'absolute', marginTop: '-7rem', marginLeft: '5.5rem' }}>

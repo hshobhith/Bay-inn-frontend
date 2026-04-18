@@ -70,8 +70,9 @@ function RoomPreview(props) {
                 {props?.room?.data?.room_images?.map((item) => (
                   <img
                     key={uniqueId()}
-                    src={item?.url}
+                    src={item?.url || '/images/jpeg/defaultBcg.jpeg'}
                     alt={item?.url || 'room-details-img'}
+                    onError={(e) => { e.target.src = '/images/jpeg/defaultBcg.jpeg'; }}
                   />
                 ))}
               </div>
