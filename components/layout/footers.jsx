@@ -7,7 +7,7 @@
  *
  */
 
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaWhatsapp } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import Link from 'next/link';
 import React from 'react';
 
