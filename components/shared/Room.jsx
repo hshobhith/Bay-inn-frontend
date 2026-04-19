@@ -20,16 +20,16 @@ function Room({ room }) {
           onError={(e) => { e.target.src = '/images/jpeg/defaultBcg.jpeg'; }}
         />
 
-        <div className='price-top'>
+        {/* <div className='price-top'>
           <h6>{`₹ ${room?.room_price}`}</h6>
           <p>per night</p>
-        </div>
+        </div> */}
 
         <Link
           className='btn-primary room-link'
           href={`/rooms/${room?.room_slug}`}
         >
-          Feature
+          Book this Room
         </Link>
       </div>
 
