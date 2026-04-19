@@ -29,7 +29,7 @@ function Home(props) {
           subtitle='deluxe rooms starting at ₹299'
         >
           <Link href='/rooms' className='btn-primary'>
-            our rooms
+            Book rooms
           </Link>
         </Banner>
       </Hero>
