@@ -217,6 +217,13 @@ h6 {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
+.banner-tagline {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--primaryColor);
+  margin-bottom: 0.5rem !important;
+  letter-spacing: 1px;
+}
 @media screen and (min-width: 576px) {
   .banner {
     padding: 2rem 3rem;

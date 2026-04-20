@@ -22,11 +22,12 @@ const { publicRuntimeConfig } = getConfig();
 
 function Home(props) {
   return (
-    <MainLayout title='Bay  Inn  Conforts ― Home'>
+    <MainLayout title='Bay Inn Comforts ― Home'>
       <Hero>
         <Banner
-          title='Bay Inn luxurious rooms'
-          subtitle='deluxe rooms starting at ₹299'
+          title='Bay Inn Comforts'
+          tagline='Comfortable Rooms & Rental Bikes in Gokarna'
+          // subtitle='deluxe rooms starting at ₹299'
         >
           <Link href='/rooms' className='btn-primary'>
             Book rooms

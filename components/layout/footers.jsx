@@ -40,7 +40,7 @@ function Footers() {
           <h4 className='footer-col-title'>Find Us</h4>
           <p className='footer-detail'>
             <FaMapMarkerAlt className='footer-icon' />
-            <span>H9GC+HCC Balale, Karnataka</span>
+            <span>Near Railway Station, Madangeri - 581344, Gokarna</span>
           </p>
           <a
             className='footer-map-link'

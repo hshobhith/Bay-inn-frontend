@@ -7,30 +7,18 @@
  *
  */
 
-import {
-  FaBeer, FaCocktail, FaHiking, FaShuttleVan
-} from 'react-icons/fa';
+import { FaBed, FaBiking } from 'react-icons/fa';
 
 const services = [
   {
-    icon: <FaCocktail />,
-    title: 'free cocktails',
-    info: 'Enjoy a welcome drink on us! Our guests receive complimentary cocktails at check-in and during happy hours at the hotel lounge.'
+    icon: <FaBed />,
+    title: 'comfortable rooms',
+    info: 'We offer clean, cozy, and well-furnished rooms perfect for a relaxing stay in Gokarna. Book your room online or contact our reception for availability.'
   },
   {
-    icon: <FaHiking />,
-    title: 'nature hiking',
-    info: 'Explore the scenic trails around the resort with our guided hiking tours, available daily for guests of all fitness levels.'
-  },
-  {
-    icon: <FaShuttleVan />,
-    title: 'free shuttle',
-    info: 'We offer free airport and city centre shuttle service for all our guests. Just let us know your schedule and we will handle the rest.'
-  },
-  {
-    icon: <FaBeer />,
-    title: 'refreshing drinks',
-    info: 'Our in-house bar is stocked with a wide selection of beverages. Relax and enjoy chilled drinks at any time of the day.'
+    icon: <FaBiking />,
+    title: 'rental bikes',
+    info: 'Explore Gokarna at your own pace with our rental bikes. Contact our reception desk to check availability and pricing for your stay.'
   }
 ];
 

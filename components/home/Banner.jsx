@@ -9,10 +9,13 @@
 
 import React from 'react';
 
-function Banner({ children, title, subtitle }) {
+function Banner({
+  children, title, tagline, subtitle
+}) {
   return (
     <div className='banner'>
       <h1>{title}</h1>
+      {tagline && <p className='banner-tagline'>{tagline}</p>}
       <p>{subtitle}</p>
       {children}
     </div>
