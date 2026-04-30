@@ -63,13 +63,15 @@ function Registration() {
   return (
     <PublicRoute>
       <MainLayout title='Bay  Inn  Conforts ― Registration'>
-        <div style={{
-          width: '100%',
-          maxWidth: '400px',
-          minHeight: 'calc(100vh - 205px)',
-          margin: '0 auto',
-          padding: '0 16px'
-        }}>
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '400px',
+            minHeight: 'calc(100vh - 205px)',
+            margin: '0 auto',
+            padding: '0 16px'
+          }}
+        >
           <Form
             form={form}
             className='login-form'
