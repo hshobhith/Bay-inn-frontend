@@ -8,9 +8,10 @@
  */
 
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Button, Modal, message } from 'antd';
+import {
+  Button, Form, Input, Modal, message
+} from 'antd';
 import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Calendar } from 'react-multi-date-picker';
@@ -24,7 +25,7 @@ const { confirm } = Modal;
 
 function OrderPlaceModal({ bookingModal, setBookingModal }) {
   const [selectedDates, setSelectedDates] = useState([]);
-  const router = useRouter();
+  const [form] = Form.useForm();
 
   // handle date change on date picker
   const handleDateChange = (dates) => {
@@ -32,80 +33,121 @@ function OrderPlaceModal({ bookingModal, setBookingModal }) {
     setSelectedDates(formattedDates);
   };
 
+  const closeModal = () => {
+    setBookingModal((prevState) => ({ ...prevState, open: false, roomId: null }));
+    setSelectedDates([]);
+    form.resetFields();
+  };
+
   // function to handle placed room booking order
   const handlePlacedOrder = () => {
-    if (selectedDates.length === 0) {
-      notificationWithIcon('error', 'ERROR', 'Minimum 1 date selection is required to placed an room booking order.');
-    } else if (selectedDates.length > 5) {
-      notificationWithIcon('error', 'ERROR', 'Maximum 5 days selection possible to placed an room booking order.');
-    } else {
+    form.validateFields().then((values) => {
+      if (selectedDates.length === 0) {
+        notificationWithIcon('error', 'ERROR', 'Please select at least 1 date for your booking.');
+        return;
+      }
+      if (selectedDates.length > 5) {
+        notificationWithIcon('error', 'ERROR', 'Maximum 5 days can be selected for a booking.');
+        return;
+      }
+
       confirm({
-        title: 'Are your selected dates booked this Room?',
+        title: 'Confirm your booking?',
         icon: <ExclamationCircleOutlined />,
-        okText: 'Ok',
+        content: `Booking for ${selectedDates.length} date(s) as ${values.guest_name}`,
+        okText: 'Confirm',
         cancelText: 'Cancel',
         onOk() {
           return new Promise((resolve, reject) => {
-            ApiService.post(`/api/v1/placed-booking-order/${bookingModal?.roomId}`, {
+            ApiService.post(`/api/v1/guest-booking-order/${bookingModal?.roomId}`, {
+              guest_name: values.guest_name,
+              guest_mobile: values.guest_mobile,
+              guest_aadhar: values.guest_aadhar || undefined,
               booking_dates: selectedDates
             })
               .then((res) => {
                 resolve();
                 if (res?.result_code === 0) {
-                  notificationWithIcon('success', 'SUCCESS', (res?.result?.message || 'Your room booking order placed successful'));
-                  setBookingModal((prevState) => ({ ...prevState, open: false, roomId: null }));
-                  router.push('/profile?tab=booking-history');
-                  setSelectedDates([]);
+                  notificationWithIcon('success', 'BOOKING PLACED!', 'Your room booking has been placed successfully. We will contact you for confirmation.');
+                  closeModal();
                 } else {
-                  notificationWithIcon('error', 'ERROR', 'Sorry! Something went wrong. App server error');
+                  notificationWithIcon('error', 'ERROR', 'Sorry! Something went wrong. Please try again.');
                 }
               })
               .catch((err) => {
-                notificationWithIcon('error', 'ERROR', (err?.response?.data?.result?.error?.message || err?.message || 'Sorry! Something went wrong. App server error'));
+                notificationWithIcon('error', 'ERROR', (err?.response?.data?.result?.error?.message || err?.message || 'Sorry! Something went wrong.'));
                 reject();
               });
           }).catch((err) => message.error(err?.message || 'Oops errors!'));
         }
       });
-    }
+    }).catch(() => {
+      notificationWithIcon('error', 'ERROR', 'Please fill in all required fields correctly.');
+    });
   };
 
   return (
     <Modal
-      title='Select data which dates are you Booked Room:'
+      title='Book This Room'
       open={bookingModal.open}
-      onOk={() => setBookingModal((prevState) => (
-        { ...prevState, open: false, roomId: null }
-      ))}
-      onCancel={() => setBookingModal((prevState) => (
-        { ...prevState, open: false, roomId: null }
-      ))}
-      closable={false}
+      onCancel={closeModal}
+      closable
       centered
       footer={[
         <div key='custom-footer'>
-          {/* button closed/hide modal */}
-          <Button
-            onClick={() => setBookingModal((prevState) => (
-              { ...prevState, open: false, roomId: null }
-            ))}
-            type='default'
-            size='middle'
-          >
+          <Button onClick={closeModal} type='default' size='middle'>
             Cancel
           </Button>
-
-          {/* button to handle placed order */}
-          <Button
-            onClick={handlePlacedOrder}
-            type='primary'
-            size='middle'
-          >
-            Placed Order
+          <Button onClick={handlePlacedOrder} type='primary' size='middle'>
+            Place Booking
           </Button>
         </div>
       ]}
     >
+      <Form
+        form={form}
+        layout='vertical'
+        style={{ marginBottom: '16px' }}
+      >
+        {/* Guest Name */}
+        <Form.Item
+          label='Full Name'
+          name='guest_name'
+          rules={[{ required: true, message: 'Please enter your full name.' }]}
+        >
+          <Input placeholder='Enter your full name' size='large' />
+        </Form.Item>
+
+        {/* Mobile Number */}
+        <Form.Item
+          label='Mobile Number'
+          name='guest_mobile'
+          rules={[
+            { required: true, message: 'Please enter your mobile number.' },
+            { pattern: /^[0-9]{10}$/, message: 'Please enter a valid 10-digit mobile number.' }
+          ]}
+        >
+          <Input placeholder='Enter 10-digit mobile number' size='large' maxLength={10} />
+        </Form.Item>
+
+        {/* Aadhar Card (optional) */}
+        <Form.Item
+          label='Aadhar Card Number (Optional)'
+          name='guest_aadhar'
+          rules={[
+            {
+              pattern: /^[0-9]{12}$/,
+              message: 'Aadhar number must be 12 digits.',
+              validateTrigger: 'onSubmit'
+            }
+          ]}
+        >
+          <Input placeholder='Enter 12-digit Aadhar number (optional)' size='large' maxLength={12} />
+        </Form.Item>
+      </Form>
+
+      {/* Date Picker */}
+      <p style={{ fontWeight: 600, marginBottom: '8px' }}>Select Booking Dates:</p>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Calendar
           style={{ width: '100%' }}

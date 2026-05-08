@@ -1,7 +1,7 @@
 export default {
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_IN',
     site_name: 'hotel-room-booking-system'
   },
   twitter: {

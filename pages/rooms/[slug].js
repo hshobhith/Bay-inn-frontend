@@ -11,7 +11,6 @@ import { Button } from 'antd';
 import axios from 'axios';
 import getConfig from 'next/config';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { v4 as uniqueId } from 'uuid';
 import Banner from '../../components/home/Banner';
@@ -20,27 +19,17 @@ import StyledHero from '../../components/rooms/StyledHero';
 import Loading from '../../components/shared/Loading';
 import OrderPlaceModal from '../../components/utilities/OrderPlaceModal';
 import RoomReviewList from '../../components/utilities/RoomReviewList';
-import { getSessionToken, getSessionUser } from '../../utils/authentication';
-import notificationWithIcon from '../../utils/notification';
 
 const { publicRuntimeConfig } = getConfig();
 
 function RoomPreview(props) {
   const [bookingModal, setBookingModal] = useState({ open: false, roomId: null });
-  const token = getSessionToken();
-  const user = getSessionUser();
-  const router = useRouter();
 
-  // function to handle place booking order
+  // function to handle place booking order — no login required
   const handleOrder = () => {
-    if (!token && !user) {
-      notificationWithIcon('error', 'ERROR', 'Please Registration/Login first to place an order.');
-      router.push('/auth/login');
-    } else {
-      setBookingModal((prevState) => (
-        { ...prevState, open: true, roomId: props?.room?.data?.id }
-      ));
-    }
+    setBookingModal((prevState) => (
+      { ...prevState, open: true, roomId: props?.room?.data?.id }
+    ));
   };
 
   return (

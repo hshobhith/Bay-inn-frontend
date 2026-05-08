@@ -7,9 +7,7 @@
  *
  */
 
-import { Button } from 'antd';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FaAlignRight } from 'react-icons/fa';
 import { getSessionToken, getSessionUser } from '../../utils/authentication';
@@ -19,7 +17,6 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState();
   const user = getSessionUser();
   const token = getSessionToken();
-  const router = useRouter();
 
   return (
     <nav className='navbar'>
@@ -38,22 +35,12 @@ function Navbar() {
           >
             <FaAlignRight className='nav-icon' />
           </button>
-
         </div>
 
-        {/* navbar login button */}
-        {user?.id && token ? (<UserPopover />) : (
-          <Button
-            style={{ position: 'absolute', right: '100px', top: '20px' }}
-            onClick={() => router.push('/auth/login')}
-            type='primary'
-            size='large'
-          >
-            Log In
-          </Button>
-        )}
+        {/* show admin popover only if a session exists (admin logged in); no Log In button for guests */}
+        {user?.id && token && <UserPopover />}
 
-        {/* navbar link */}
+        {/* navbar links */}
         <ul className={isOpen ? 'nav-links show-nav' : 'nav-links'}>
           <li>
             <Link href='/'>Home</Link>
