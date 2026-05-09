@@ -44,7 +44,7 @@ function Footers() {
           </p>
           <a
             className='footer-map-link'
-            href='https://maps.app.goo.gl/NBVe7LsKhPMYmy6z5'
+            href='https://maps.app.goo.gl/jBr4xG46ZhZhU1Xg8'
             target='_blank'
             rel='noreferrer'
           >

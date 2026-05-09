@@ -52,7 +52,7 @@ function OrderPlaceModal({ bookingModal, setBookingModal }) {
       }
 
       confirm({
-        title: 'Confirm your booking?',
+        title: 'Please confirm your booking on WhatsApp.',
         icon: <ExclamationCircleOutlined />,
         content: `Booking for ${selectedDates.length} date(s) as ${values.guest_name}`,
         okText: 'Confirm',
@@ -68,8 +68,15 @@ function OrderPlaceModal({ bookingModal, setBookingModal }) {
               .then((res) => {
                 resolve();
                 if (res?.result_code === 0) {
-                  notificationWithIcon('success', 'BOOKING PLACED!', 'Your room booking has been placed successfully. We will contact you for confirmation.');
+                  notificationWithIcon('success', 'BOOKING PLACED!', 'Your room booking has been placed successfully. Redirecting you to WhatsApp to notify the admin.');
                   closeModal();
+
+                  // Build pre-filled WhatsApp message for admin
+                  const bookingId = res?.result?._id || res?.result?.id || 'N/A';
+                  const datesText = selectedDates.join(', ');
+                  const aadharLine = values.guest_aadhar ? `%0AAadhar%20%3A%20${values.guest_aadhar}` : '';
+                  const waMessage = `🏨 *Room Booking*%0A%0A👤 Name%20%3A%20${encodeURIComponent(values.guest_name)}%0A📱 Mobile%20%3A%20${values.guest_mobile}${aadharLine}%0A%0A📅 Dates%20%3A%20${encodeURIComponent(datesText)}%0A`;
+                  window.open(`https://wa.me/916366076182?text=${waMessage}`, '_blank');
                 } else {
                   notificationWithIcon('error', 'ERROR', 'Sorry! Something went wrong. Please try again.');
                 }
