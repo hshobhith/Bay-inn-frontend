@@ -76,7 +76,7 @@ function OrderPlaceModal({ bookingModal, setBookingModal }) {
                   const datesText = selectedDates.join(', ');
                   const aadharLine = values.guest_aadhar ? `%0AAadhar%20%3A%20${values.guest_aadhar}` : '';
                   const waMessage = `🏨 *Room Booking*%0A%0A👤 Name%20%3A%20${encodeURIComponent(values.guest_name)}%0A📱 Mobile%20%3A%20${values.guest_mobile}${aadharLine}%0A%0A📅 Dates%20%3A%20${encodeURIComponent(datesText)}%0A🔖 Booking%20ID%20%3A%20${bookingId}`;
-                  window.open(`https://wa.me/916366076182?text=${waMessage}`, '_blank');
+                  window.open(`https://wa.me/919945302194?text=${waMessage}`, '_blank');
                 } else {
                   notificationWithIcon('error', 'ERROR', 'Sorry! Something went wrong. Please try again.');
                 }
